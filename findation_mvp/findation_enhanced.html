@@ -683,6 +683,31 @@
     <script>
         const API_BASE = 'https://your-api-url.railway.app'; // Замени на свой URL API
         
+        // Demo data for MVP (временно, пока нет API)
+        const DEMO_DATA = {
+            brands: ['Dior', 'MAC', 'Clarins', 'Chanel', 'YSL', 'Estée Lauder', 'Lancôme', 'NARS'],
+            products: {
+                'Dior': ['Dior Forever', 'Dior Forever Skin Glow', 'Dior Backstage'],
+                'MAC': ['MAC Studio Fix Fluid', 'MAC Face and Body', 'MAC Pro Longwear'],
+                'Clarins': ['Clarins Skin Illusion', 'Clarins Everlasting', 'Clarins Superbalanced'],
+                'Chanel': ['Chanel Vitalumière Aqua', 'Chanel Le Teint Ultra Tenue', 'Chanel Vitalumière'],
+                'YSL': ['YSL All Hours', 'YSL Touche Éclat', 'YSL Fusion Ink'],
+                'Estée Lauder': ['Estée Lauder Double Wear', 'Estée Lauder Futurist', 'Estée Lauder Nutritious'],
+                'Lancôme': ['Lancôme Teint Idole Ultra Wear', 'Lancôme Renergie Lift Makeup', 'Lancôme Teint Miracle'],
+                'NARS': ['NARS Natural Radiant Longwear', 'NARS Sheer Glow', 'NARS All Day Luminous']
+            },
+            shades: {
+                'Dior Forever': ['021', '030', '031', '040', '050', '060'],
+                'MAC Studio Fix Fluid': ['NC15', 'NC20', 'NC25', 'NC30', 'NC35', 'NC40', 'NC45'],
+                'Clarins Skin Illusion': ['101W', '105N', '108C', '110', '112', '115'],
+                'Chanel Vitalumière Aqua': ['10 Beige', '20 Beige', '30 Beige', '40 Beige'],
+                'YSL All Hours': ['BR10', 'BR20', 'BR30', 'BR40', 'BR50'],
+                'Estée Lauder Double Wear': ['1C1', '1N1', '2C1', '2N1', '3C1', '3N1'],
+                'Lancôme Teint Idole': ['100', '200', '300', '400', '500'],
+                'NARS Natural Radiant': ['Oslo', 'St. Moritz', 'Monte Carlo', 'Barcelona', 'Syracuse']
+            }
+        };
+        
         // Global state
         let currentStep = 1;
         let cosmeticBag = [];
@@ -694,11 +719,24 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            loadSavedData();
-            setupSearchListeners();
             loadBrands();
-            setupSelectors();
+            setupEventListeners();
         });
+
+        // Load brands (demo data)
+        function loadBrands() {
+            const brandSelect = document.getElementById('brand-select');
+            brandSelect.innerHTML = '<option value="">Выберите бренд...</option>';
+            
+            DEMO_DATA.brands.forEach(brand => {
+                const option = document.createElement('option');
+                option.value = brand;
+                option.textContent = brand;
+                brandSelect.appendChild(option);
+            });
+            
+            console.log('Загружено демо-данных брендов');
+        }
 
         // Load saved data
         function loadSavedData() {
@@ -743,7 +781,7 @@
             const productSelect = document.getElementById('product-select');
             const shadeSelect = document.getElementById('shade-select');
             
-            brandSelect.addEventListener('change', async function() {
+            brandSelect.addEventListener('change', function() {
                 const brand = this.value;
                 if (!brand) {
                     productSelect.disabled = true;
@@ -753,28 +791,21 @@
                     return;
                 }
                 
-                try {
-                    const response = await fetch(`${API_BASE}/brands/${encodeURIComponent(brand)}/shades`);
-                    const data = await response.json();
-                    
-                    const products = [...new Set(data.shades.map(shade => shade.product))];
-                    
-                    productSelect.disabled = false;
-                    productSelect.innerHTML = '<option value="">Выберите линейку...</option>';
-                    products.forEach(product => {
-                        const option = document.createElement('option');
-                        option.value = product;
-                        option.textContent = product;
-                        productSelect.appendChild(option);
-                    });
-                    
-                    productSelect.dataset.shades = JSON.stringify(data.shades);
-                    
-                    shadeSelect.disabled = true;
-                    shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
-                } catch (error) {
-                    console.error('Error loading products:', error);
-                }
+                // Load products from demo data
+                const products = DEMO_DATA.products[brand] || [];
+                productSelect.disabled = false;
+                productSelect.innerHTML = '<option value="">Выберите линейку...</option>';
+                
+                products.forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product;
+                    option.textContent = product;
+                    productSelect.appendChild(option);
+                });
+                
+                // Reset shade select
+                shadeSelect.disabled = true;
+                shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
             });
             
             productSelect.addEventListener('change', function() {
@@ -784,64 +815,26 @@
                     shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
                     return;
                 }
-
-                const shades = JSON.parse(this.dataset.shades || '[]');
-                const productShades = shades.filter(shade => shade.product === product);
                 
+                // Load shades from demo data
+                const brand = brandSelect.value;
+                const shades = DEMO_DATA.shades[product] || [];
                 shadeSelect.disabled = false;
                 shadeSelect.innerHTML = '<option value="">Выберите оттенок...</option>';
                 
-                productShades.forEach(shade => {
+                shades.forEach(shade => {
                     const option = document.createElement('option');
-                    option.value = shade.id;
-                    option.textContent = shade.shade_value || 'Без оттенка';
+                    option.value = shade;
+                    option.textContent = shade;
                     shadeSelect.appendChild(option);
                 });
             });
         }
-
-        // Load brands
-        async function loadBrands() {
-            try {
-                const response = await fetch(`${API_BASE}/brands`);
-                const data = await response.json();
-                const brandSelect = document.getElementById('brand-select');
-                
-                brandSelect.innerHTML = '<option value="">Выберите бренд...</option>';
-                data.brands.forEach(brand => {
-                    const option = document.createElement('option');
-                    option.value = brand;
-                    option.textContent = brand;
-                    brandSelect.appendChild(option);
-                });
-                
-                await loadAllShades();
-                
-            } catch (error) {
-                console.error('Error loading brands:', error);
-            }
-        }
-
-        // Load all shades
-        async function loadAllShades() {
-            try {
-                const brandsResponse = await fetch(`${API_BASE}/brands`);
-                const brandsData = await brandsResponse.json();
-                
-                for (const brand of brandsData.brands.slice(0, 15)) {
-                    try {
-                        const response = await fetch(`${API_BASE}/brands/${encodeURIComponent(brand)}/shades`);
-                        const data = await response.json();
-                        allShades = allShades.concat(data.shades);
-                    } catch (error) {
-                        console.error(`Error loading shades for ${brand}:`, error);
-                    }
-                }
-                
-                console.log(`Loaded ${allShades.length} shades`);
-            } catch (error) {
-                console.error('Error loading all shades:', error);
-            }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            setupSelectors();
+            setupSearchListeners();
         }
 
         // Setup search
