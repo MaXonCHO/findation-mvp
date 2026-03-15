@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Findation - Твой идеальный тон. Найден.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'beige': {
+                            '50': '#F9F9F7',
+                            '100': '#F5EBE0',
+                            '200': '#E3D5CA',
+                            '300': '#D4C5B5',
+                            '400': '#C4B5A5',
+                            '500': '#B4A495',
+                            '600': '#A49485',
+                            '700': '#948475',
+                            '800': '#847465',
+                            '900': '#746455'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'slide-left': 'slideLeft 0.6s ease-out',
+                        'slide-right': 'slideRight 0.6s ease-out',
+                        'pulse-beige': 'pulseBeige 2s infinite',
+                        'swatch-glow': 'swatchGlow 2s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            background-color: #F9F9F7;
+            color: #333333;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideLeft {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes pulseBeige {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes swatchGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(180, 164, 149, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(180, 164, 149, 0); }
+        }
+        
+        .beige-gradient {
+            background: linear-gradient(135deg, #F5EBE0 0%, #E3D5CA 100%);
+        }
+        
+        .beige-gradient-dark {
+            background: linear-gradient(135deg, #D4C5B5 0%, #C4B5A5 100%);
+        }
+        
+        .beige-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .beige-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+        
+        .beige-button {
+            background: linear-gradient(135deg, #F5EBE0 0%, #E3D5CA 100%);
+            color: #333333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .beige-button:hover {
+            background: linear-gradient(135deg, #E3D5CA 0%, #D4C5B5 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 197, 181, 0.3);
+        }
+        
+        .beige-button-dark {
+            background: linear-gradient(135deg, #D4C5B5 0%, #C4B5A5 100%);
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .beige-button-dark:hover {
+            background: linear-gradient(135deg, #C4B5A5 0%, #B4A495 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(180, 164, 149, 0.3);
+        }
+        
+        .beige-outline {
+            border: 2px solid #E3D5CA;
+            color: #B4A495;
+            transition: all 0.3s ease;
+        }
+        
+        .beige-outline:hover {
+            border-color: #B4A495;
+            color: #948475;
+            background: rgba(243, 239, 235, 0.5);
+        }
+        
+        .cosmetic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .cosmetic-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+        
+        .quiz-card {
+            background: white;
+            border: 1px solid #E3D5CA;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-card:hover {
+            border-color: #D4C5B5;
+            background: #F9F9F7;
+        }
+        
+        .quiz-card.selected {
+            background: white;
+            border-color: #B4A495;
+            box-shadow: 0 0 0 2px rgba(180, 164, 149, 0.1);
+        }
+        
+        .search-input {
+            background: white;
+            border: 1px solid #E3D5CA;
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #B4A495;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .brand-chip {
+            background: white;
+            border: 1px solid #E3D5CA;
+            color: #B4A495;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .brand-chip:hover {
+            border-color: #B4A495;
+            color: #948475;
+            background: #F9F9F7;
+        }
+        
+        .shade-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .shade-circle:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .shade-swatch {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 2px solid #E3D5CA;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shade-swatch:hover {
+            border-color: #B4A495;
+            transform: scale(1.1);
+        }
+        
+        .shade-swatch.selected {
+            border-color: #B4A495;
+            animation: swatchGlow 2s infinite;
+        }
+        
+        .shade-swatch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .shade-swatch.selected {
+            border-color: #7F1D1D;
+            animation: swatchGlow 2s infinite;
+        }
+        
+        .product-image-placeholder {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #F5EBE0 0%, #E3D5CA 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #B4A495;
+            border: 2px solid #E3D5CA;
+            transition: all 0.3s ease;
+        }
+        
+        .product-image-placeholder:hover {
+            border-color: #B4A495;
+            color: #B4A495;
+        }
+        
+        .match-badge {
+            background: linear-gradient(135deg, #D4C5B5 0%, #C4B5A5 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .progress-line {
+            height: 2px;
+            background: #E3D5CA;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-line.active {
+            background: linear-gradient(90deg, #D4C5B5 0%, #C4B5A5 100%);
+        }
+        
+        .step-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #E3D5CA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .step-indicator.active {
+            background: linear-gradient(135deg, #D4C5B5 0%, #C4B5A5 100%);
+            border-color: #B4A495;
+            color: white;
+        }
+        
+        .step-indicator.completed {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        
+        .floating-accent {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #D4C5B5 0%, #C4B5A5 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(180, 164, 149, 0.3);
+            z-index: 50;
+            animation: pulse-beige 2s infinite;
+        }
+        
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
+        
+        .shade-preview {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 2px solid #E3D5CA;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+            transition: all 0.2s ease;
+        }
+        
+        .shade-preview:hover {
+            transform: scale(1.2);
+            border-color: #B4A495;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Floating Accent Element -->
+    <div class="floating-accent">
+        <i class="fas fa-palette"></i>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="sticky top-0 z-40 bg-white bg-opacity-95 backdrop-blur-sm border-b border-beige-200">
+        <div class="container mx-auto px-6 py-6">
+            <div class="flex items-center justify-between max-w-2xl mx-auto">
+                <div class="flex items-center space-x-4">
+                    <div class="step-indicator active" id="step1">1</div>
+                    <div class="progress-line w-16" id="line1"></div>
+                    <div class="step-indicator" id="step2">2</div>
+                    <div class="progress-line w-16" id="line2"></div>
+                    <div class="step-indicator" id="step3">3</div>
+                    <div class="progress-line w-16" id="line3"></div>
+                    <div class="step-indicator" id="step4">4</div>
+                </div>
+                <div class="text-sm text-gray-600 sans">
+                    <span id="current-step-title">Выбор оттенков</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-6 py-12 max-w-4xl">
+        
+        <!-- Step 1: Hero & Selection -->
+        <section id="step1-content" class="fade-in">
+            <div class="text-center mb-16">
+                <h1 class="serif-font text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Найди свой идеальный тон.<br>С помощью AI.
+                </h1>
+                <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Наш искусственный интеллект проанализирует тысячи оттенков от ведущих брендов и подберет идеальное соответствие именно для твоей кожи. Забудь о часах проб и ошибок.
+                </p>
+            </div>
+
+            <!-- Selection Section -->
+            <div class="beige-card p-8 mb-8">
+                <h2 class="serif-font text-2xl font-bold text-gray-900 mb-6">Выбери оттенки</h2>
+                
+                <!-- Brand/Product/Shade Selectors -->
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Бренд</label>
+                        <select id="brand-select" class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:border-burgundy-300 focus:outline-none focus:ring-1 focus:ring-burgundy-200 transition-all">
+                            <option value="">Выберите бренд...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Линейка</label>
+                        <select id="product-select" class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:border-burgundy-300 focus:outline-none focus:ring-1 focus:ring-burgundy-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            <option value="">Сначала выберите бренд</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Оттенок</label>
+                        <select id="shade-select" class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:border-burgundy-300 focus:outline-none focus:ring-1 focus:ring-burgundy-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            <option value="">Сначала выберите линейку</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Add Button -->
+                <div class="text-center mb-6">
+                    <button 
+                        onclick="addCosmeticFromSelectors()"
+                        class="beige-button px-6 py-2 rounded-lg text-sm font-medium w-full"
+                    >
+                        <i class="fas fa-plus mr-2"></i>
+                        Добавить оттенок
+                    </button>
+                </div>
+
+                <!-- Alternative Search -->
+                <div class="border-t border-beige-200 pt-6">
+                    <p class="text-sm text-gray-500 mb-4">Или найди по названию:</p>
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="cosmetic-search"
+                            placeholder="Введите название бренда или средства..."
+                            class="search-input w-full pr-12"
+                        >
+                        <i class="fas fa-search absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    
+                    <!-- Search Dropdown -->
+                    <div id="search-dropdown" class="hidden absolute z-40 w-full bg-white border border-beige-200 rounded-xl shadow-lg max-h-64 overflow-y-auto mt-2">
+                        <!-- Results will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Popular Brands -->
+                <div class="mt-6">
+                    <p class="text-sm text-gray-500 mb-3">Популярные бренды:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="brand-chip" onclick="quickSearch('Dior')">Dior</div>
+                        <div class="brand-chip" onclick="quickSearch('Estée Lauder')">Estée Lauder</div>
+                        <div class="brand-chip" onclick="quickSearch('Erborian')">Erborian</div>
+                        <div class="brand-chip" onclick="quickSearch('Chanel')">Chanel</div>
+                        <div class="brand-chip" onclick="quickSearch('Garnier')">Garnier</div>
+                        <div class="brand-chip" onclick="quickSearch('MAC')">MAC</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Cosmetics -->
+            <div id="cosmetic-bag-container" class="beige-card p-8 mb-8">
+                <h2 class="serif-font text-2xl font-bold text-gray-900 mb-6">Твоя косметичка</h2>
+                <div id="cosmetic-bag" class="space-y-4 mb-6">
+                    <div class="text-center py-8 text-gray-400">
+                        <i class="fas fa-bottle text-4xl mb-4"></i>
+                        <p>Добавь 1-3 оттенка для анализа</p>
+                    </div>
+                </div>
+                
+                <!-- Continue Button -->
+                <div id="continue-to-step2" class="text-center hidden">
+                    <button 
+                        onclick="goToStep2()"
+                        class="beige-button-dark px-8 py-3 rounded-lg font-semibold"
+                    >
+                        Продолжить
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2: Profile -->
+        <section id="step2-content" class="hidden">
+            <div class="beige-card p-8">
+                <h2 class="serif-font text-3xl font-bold text-gray-900 mb-6">О твоей коже</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Это поможет нам найти идеальное соответствие. Расскажи немного о своей коже и предпочтениях.
+                </p>
+
+                <!-- Skin Type -->
+                <div class="mb-8">
+                    <h3 class="font-semibold text-gray-900 mb-4">Тип кожи</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'skin_type', 'жирная')">
+                            <div class="text-center">
+                                <i class="fas fa-tint text-xl text-beige-600 mb-2"></i>
+                                <div class="text-sm font-medium">Жирная</div>
+                            </div>
+                        </div>
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'skin_type', 'сухая')">
+                            <div class="text-center">
+                                <div class="w-8 h-8 mx-auto mb-2 rounded-full" style="background: linear-gradient(135deg, #FFF8DC 0%, #F5DEB3 100%);"></div>
+                                <div class="text-sm font-medium">Сухая</div>
+                            </div>
+                        </div>
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'skin_type', 'нормальная')">
+                            <div class="text-center">
+                                <i class="fas fa-check-circle text-xl text-beige-600 mb-2"></i>
+                                <div class="text-sm font-medium">Нормальная</div>
+                            </div>
+                        </div>
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'skin_type', 'комбинированная')">
+                            <div class="text-center">
+                                <i class="fas fa-adjust text-xl text-beige-600 mb-2"></i>
+                                <div class="text-sm font-medium">Комбинированная</div>
+                            </div>
+                        </div>
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'skin_type', 'чувствительная')">
+                            <div class="text-center">
+                                <i class="fas fa-exclamation-triangle text-xl text-beige-600 mb-2"></i>
+                                <div class="text-sm font-medium">Чувствительная</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Finish Type -->
+                <div class="mb-8">
+                    <h3 class="font-semibold text-gray-900 mb-4">Предпочитаемый финиш</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'finish_type', 'матовый')">
+                            <div class="text-center">
+                                <i class="fas fa-square text-xl text-beige-600 mb-2"></i>
+                                <div class="text-sm font-medium">Матовый</div>
+                            </div>
+                        </div>
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'finish_type', 'натуральный')">
+                            <div class="text-center">
+                                <i class="fas fa-circle text-xl text-beige-600 mb-2"></i>
+                                <div class="text-sm font-medium">Натуральный</div>
+                            </div>
+                        </div>
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'finish_type', 'сияющий')">
+                            <div class="text-center">
+                                <i class="fas fa-star text-xl text-beige-600 mb-2"></i>
+                                <div class="text-sm font-medium">Сияющий</div>
+                            </div>
+                        </div>
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'finish_type', 'полуматовый')">
+                            <div class="text-center">
+                                <div class="w-8 h-8 mx-auto mb-2 rounded" style="background: linear-gradient(135deg, #F5DEB3 0%, #E3D5CA 50%, #D4C5B5 100%);"></div>
+                                <div class="text-sm font-medium">Полуматовый</div>
+                            </div>
+                        </div>
+                        <div class="quiz-card" onclick="selectQuizOption(this, 'finish_type', 'бархатистый')">
+                            <div class="text-center">
+                                <i class="fas fa-cloud text-xl text-beige-600 mb-2"></i>
+                                <div class="text-sm font-medium">Бархатистый</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calibration for each cosmetic -->
+                <div id="calibration-section" class="space-y-6 mb-8">
+                    <h3 class="font-semibold text-gray-900 mb-4">Как эти оттенки сидят на тебе?</h3>
+                    <!-- Calibration cards will be loaded here -->
+                </div>
+
+                <!-- Continue Button -->
+                <div id="continue-to-step3" class="text-center hidden">
+                    <button 
+                        onclick="goToStep3()"
+                        class="beige-button-dark px-8 py-3 rounded-lg font-semibold"
+                    >
+                        Найти идеальный тон
+                        <i class="fas fa-magic ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 3: Processing -->
+        <section id="step3-content" class="hidden">
+            <div class="text-center">
+                <div class="mb-8">
+                    <div class="inline-flex items-center justify-center w-20 h-20 beige-gradient-dark rounded-full mb-6 float-animation">
+                        <i class="fas fa-brain text-white text-3xl"></i>
+                    </div>
+                    <h2 class="serif-font text-3xl font-bold text-gray-900 mb-4">Анализируем оттенки<span class="loading-dots"></span></h2>
+                    <p class="text-gray-600">AI ищет идеальное соответствие среди тысяч вариантов</p>
+                </div>
+
+                <!-- Processing Steps -->
+                <div class="max-w-md mx-auto space-y-4 text-left">
+                    <div class="flex items-center space-x-3" id="processing-step1">
+                        <div class="w-3 h-3 bg-beige-600 rounded-full"></div>
+                        <span class="text-sm text-gray-700">Анализ цветовых пигментов</span>
+                    </div>
+                    <div class="flex items-center space-x-3" id="processing-step2">
+                        <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        <span class="text-sm text-gray-500">Сравнение с твоим профилем</span>
+                    </div>
+                    <div class="flex items-center space-x-3" id="processing-step3">
+                        <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        <span class="text-sm text-gray-500">Проверка наличия</span>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-200 rounded-full h-1 mt-8 max-w-md mx-auto">
+                    <div id="processing-progress" class="beige-gradient-dark h-1 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 4: Results -->
+        <section id="step4-content" class="hidden">
+            <div class="beige-card p-8">
+                <h2 class="serif-font text-3xl font-bold text-gray-900 mb-6">Твои идеальные мэтчи</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Мы нашли идеальные соответствия на основе анализа твоих предпочтений и оттенков.
+                </p>
+
+                <!-- Results Container -->
+                <div id="results-container">
+                    <!-- Results will be loaded here -->
+                </div>
+
+                <!-- Feedback Section -->
+                <div id="feedback-section" class="text-center mt-8 p-6 bg-white rounded-xl border border-beige-200">
+                    <p class="text-gray-600 mb-4">Этот совет помог?</p>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="feedback('yes')" class="beige-button-dark px-6 py-2 rounded-lg text-sm">
+                            Да
+                        </button>
+                        <button onclick="feedback('no')" class="beige-outline px-6 py-2 rounded-lg text-sm">
+                            Нет
+                        </button>
+                    </div>
+                    <div id="feedback-details" class="hidden mt-4">
+                        <p class="text-sm text-gray-600 mb-3">Что не так?</p>
+                        <div class="flex justify-center flex-wrap gap-2">
+                            <button onclick="feedbackReason('too_dense')" class="beige-outline px-4 py-2 rounded-lg text-sm">Слишком плотный</button>
+                            <button onclick="feedbackReason('wrong_color')" class="beige-outline px-4 py-2 rounded-lg text-sm">Цвет не тот</button>
+                            <button onclick="feedbackReason('expensive')" class="beige-outline px-4 py-2 rounded-lg text-sm">Дорого</button>
+                            <button onclick="feedbackReason('bad_texture')" class="beige-outline px-4 py-2 rounded-lg text-sm">Плохая текстура</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const API_BASE = 'https://your-api-url.railway.app'; // Замени на свой URL API
+        
+        // Global state
+        let currentStep = 1;
+        let cosmeticBag = [];
+        let userProfile = {};
+        let calibrationData = {};
+        let recommendations = [];
+        let searchTimeout;
+        let allShades = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedData();
+            setupSearchListeners();
+            loadBrands();
+            setupSelectors();
+        });
+
+        // Load saved data
+        function loadSavedData() {
+            try {
+                const saved = localStorage.getItem('findation_steps_data');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    cosmeticBag = data.cosmeticBag || [];
+                    userProfile = data.userProfile || {};
+                    calibrationData = data.calibrationData || {};
+                    
+                    if (cosmeticBag.length > 0) {
+                        updateCosmeticBagDisplay();
+                    }
+                    
+                    if (userProfile.skin_type) {
+                        updateProfileDisplay();
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading saved data:', error);
+            }
+        }
+
+        // Save data
+        function saveData() {
+            try {
+                const data = {
+                    cosmeticBag,
+                    userProfile,
+                    calibrationData
+                };
+                localStorage.setItem('findation_steps_data', JSON.stringify(data));
+            } catch (error) {
+                console.error('Error saving data:', error);
+            }
+        }
+
+        // Setup selectors
+        function setupSelectors() {
+            const brandSelect = document.getElementById('brand-select');
+            const productSelect = document.getElementById('product-select');
+            const shadeSelect = document.getElementById('shade-select');
+            
+            brandSelect.addEventListener('change', async function() {
+                const brand = this.value;
+                if (!brand) {
+                    productSelect.disabled = true;
+                    productSelect.innerHTML = '<option value="">Сначала выберите бренд</option>';
+                    shadeSelect.disabled = true;
+                    shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
+                    return;
+                }
+                
+                try {
+                    const response = await fetch(`${API_BASE}/brands/${encodeURIComponent(brand)}/shades`);
+                    const data = await response.json();
+                    
+                    const products = [...new Set(data.shades.map(shade => shade.product))];
+                    
+                    productSelect.disabled = false;
+                    productSelect.innerHTML = '<option value="">Выберите линейку...</option>';
+                    products.forEach(product => {
+                        const option = document.createElement('option');
+                        option.value = product;
+                        option.textContent = product;
+                        productSelect.appendChild(option);
+                    });
+                    
+                    productSelect.dataset.shades = JSON.stringify(data.shades);
+                    
+                    shadeSelect.disabled = true;
+                    shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
+                } catch (error) {
+                    console.error('Error loading products:', error);
+                }
+            });
+            
+            productSelect.addEventListener('change', function() {
+                const product = this.value;
+                if (!product) {
+                    shadeSelect.disabled = true;
+                    shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
+                    return;
+                }
+
+                const shades = JSON.parse(this.dataset.shades || '[]');
+                const productShades = shades.filter(shade => shade.product === product);
+                
+                shadeSelect.disabled = false;
+                shadeSelect.innerHTML = '<option value="">Выберите оттенок...</option>';
+                
+                productShades.forEach(shade => {
+                    const option = document.createElement('option');
+                    option.value = shade.id;
+                    option.textContent = shade.shade_value || 'Без оттенка';
+                    shadeSelect.appendChild(option);
+                });
+            });
+        }
+
+        // Load brands
+        async function loadBrands() {
+            try {
+                const response = await fetch(`${API_BASE}/brands`);
+                const data = await response.json();
+                const brandSelect = document.getElementById('brand-select');
+                
+                brandSelect.innerHTML = '<option value="">Выберите бренд...</option>';
+                data.brands.forEach(brand => {
+                    const option = document.createElement('option');
+                    option.value = brand;
+                    option.textContent = brand;
+                    brandSelect.appendChild(option);
+                });
+                
+                await loadAllShades();
+                
+            } catch (error) {
+                console.error('Error loading brands:', error);
+            }
+        }
+
+        // Load all shades
+        async function loadAllShades() {
+            try {
+                const brandsResponse = await fetch(`${API_BASE}/brands`);
+                const brandsData = await brandsResponse.json();
+                
+                for (const brand of brandsData.brands.slice(0, 15)) {
+                    try {
+                        const response = await fetch(`${API_BASE}/brands/${encodeURIComponent(brand)}/shades`);
+                        const data = await response.json();
+                        allShades = allShades.concat(data.shades);
+                    } catch (error) {
+                        console.error(`Error loading shades for ${brand}:`, error);
+                    }
+                }
+                
+                console.log(`Loaded ${allShades.length} shades`);
+            } catch (error) {
+                console.error('Error loading all shades:', error);
+            }
+        }
+
+        // Setup search
+        function setupSearchListeners() {
+            const searchInput = document.getElementById('cosmetic-search');
+            const dropdown = document.getElementById('search-dropdown');
+            
+            searchInput.addEventListener('input', function(e) {
+                clearTimeout(searchTimeout);
+                const query = e.target.value.trim();
+                
+                if (query.length < 2) {
+                    dropdown.classList.add('hidden');
+                    return;
+                }
+                
+                searchTimeout = setTimeout(() => {
+                    searchCosmetics(query);
+                }, 300);
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+        }
+
+        // Quick search
+        function quickSearch(brand) {
+            document.getElementById('cosmetic-search').value = brand;
+            searchCosmetics(brand);
+        }
+
+        // Search cosmetics
+        function searchCosmetics(query) {
+            const dropdown = document.getElementById('search-dropdown');
+            
+            // Используем новый API поиска
+            fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}&limit=6`)
+                .then(response => response.json())
+                .then(data => {
+                    displaySearchResults(data.results || []);
+                })
+                .catch(error => {
+                    console.error('Error searching:', error);
+                    dropdown.innerHTML = '<div class="p-4 text-gray-500 text-center">Ошибка поиска</div>';
+                });
+        }
+
+        // Display search results
+        function displaySearchResults(shades) {
+            const dropdown = document.getElementById('search-dropdown');
+            const searchInput = document.getElementById('cosmetic-search');
+            
+            if (shades.length === 0) {
+                dropdown.innerHTML = '<div class="p-4 text-gray-500 text-center">Ничего не найдено</div>';
+            } else {
+                dropdown.innerHTML = shades.map(shade => `
+                    <div class="p-4 hover:bg-beige-50 cursor-pointer border-b last:border-b-0" onclick="selectCosmetic('${shade.id}')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                ${shade.image_url ? 
+                                    `<img src="${shade.image_url}" alt="${shade.brand}" class="w-10 h-10 rounded-lg mr-3 object-cover">` :
+                                    `<div class="w-10 h-10 bg-beige-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-bottle text-beige-600 text-sm"></i>
+                                    </div>`
+                                }
+                                <div>
+                                    <div class="font-medium text-gray-900">${shade.brand}</div>
+                                    <div class="text-sm text-gray-600">${shade.name}</div>
+                                    <div class="text-sm text-beige-600">${shade.shade_value || 'Без оттенка'}</div>
+                                </div>
+                            </div>
+                            <i class="fas fa-plus text-beige-600"></i>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            const rect = searchInput.getBoundingClientRect();
+            dropdown.style.top = (rect.bottom + window.scrollY) + 'px';
+            dropdown.style.left = rect.left + 'px';
+            dropdown.style.width = rect.width + 'px';
+            dropdown.classList.remove('hidden');
+        }
+
+        // Select cosmetic
+        async function selectCosmetic(shadeId) {
+            try {
+                const response = await fetch(`${API_BASE}/products/${shadeId}`);
+                const shade = await response.json();
+                
+                if (cosmeticBag.find(item => item.id === shadeId)) {
+                    return;
+                }
+                
+                if (cosmeticBag.length >= 3) {
+                    return;
+                }
+                
+                cosmeticBag.push(shade);
+                updateCosmeticBagDisplay();
+                saveData();
+                
+                document.getElementById('cosmetic-search').value = '';
+                document.getElementById('search-dropdown').classList.add('hidden');
+                
+            } catch (error) {
+                console.error('Error selecting cosmetic:', error);
+            }
+        }
+
+        // Add cosmetic from selectors
+        function addCosmeticFromSelectors() {
+            const brandSelect = document.getElementById('brand-select');
+            const productSelect = document.getElementById('product-select');
+            const shadeSelect = document.getElementById('shade-select');
+            
+            const selectedOption = shadeSelect.options[shadeSelect.selectedIndex];
+            if (!selectedOption.value) {
+                return;
+            }
+
+            const shades = JSON.parse(productSelect.dataset.shades || '[]');
+            const shade = shades.find(s => s.id === selectedOption.value);
+            
+            if (!shade) return;
+
+            if (cosmeticBag.find(item => item.id === shade.id)) {
+                return;
+            }
+            
+            if (cosmeticBag.length >= 3) {
+                return;
+            }
+
+            cosmeticBag.push(shade);
+            updateCosmeticBagDisplay();
+            saveData();
+            
+            // Reset selectors
+            brandSelect.value = '';
+            productSelect.disabled = true;
+            productSelect.innerHTML = '<option value="">Сначала выберите бренд</option>';
+            shadeSelect.disabled = true;
+            shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
+        }
+
+        // Update cosmetic bag display
+        function updateCosmeticBagDisplay() {
+            const container = document.getElementById('cosmetic-bag');
+            const continueButton = document.getElementById('continue-to-step2');
+            
+            if (cosmeticBag.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-400">
+                        <i class="fas fa-bottle text-4xl mb-4"></i>
+                        <p>Добавь 1-3 оттенка для анализа</p>
+                    </div>
+                `;
+                continueButton.classList.add('hidden');
+            } else {
+                container.innerHTML = cosmeticBag.map((cosmetic, index) => `
+                    <div class="cosmetic-card slide-up">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center">
+                                ${cosmetic.image_url ? 
+                                    `<img src="${cosmetic.image_url}" alt="${cosmetic.brand}" class="w-12 h-12 rounded-lg mr-4 object-cover">` :
+                                    `<div class="w-12 h-12 bg-beige-100 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-bottle text-beige-600"></i>
+                                    </div>`
+                                }
+                                <div>
+                                    <div class="font-semibold text-gray-900">${cosmetic.brand}</div>
+                                    <div class="text-sm text-gray-600">${cosmetic.product}</div>
+                                    <div class="text-sm text-beige-600 font-medium">${cosmetic.shade_value || 'Без оттенка'}</div>
+                                </div>
+                            </div>
+                            <button onclick="removeCosmetic(${index})" class="text-gray-400 hover:text-red-500 transition">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                ${cosmetic.swatch_url ? 
+                                    `<img src="${cosmetic.swatch_url}" alt="${cosmetic.shade_value}" class="w-6 h-6 rounded-full border-2 border-white shadow-sm">` :
+                                    (cosmetic.shade_value ? 
+                                        `<div class="shade-circle" style="background: ${getShadeColor(cosmetic.shade_value)}"></div>` : ''
+                                    )
+                                }
+                                ${cosmetic.shade_value ? `<span class="text-sm text-gray-600">${cosmetic.shade_value}</span>` : ''}
+                            </div>
+                            <div class="text-xs text-gray-500">
+                                ${cosmetic.volume || '30 мл'}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                continueButton.classList.remove('hidden');
+            }
+        }
+
+        // Remove cosmetic
+        function removeCosmetic(index) {
+            cosmeticBag.splice(index, 1);
+            updateCosmeticBagDisplay();
+            saveData();
+        }
+
+        // Navigation
+        function goToStep2() {
+            if (cosmeticBag.length === 0) {
+                return;
+            }
+            
+            currentStep = 2;
+            updateProgressBar();
+            showStep(2);
+            loadCalibrationCards();
+        }
+
+        function goToStep3() {
+            if (!userProfile.skin_type || !userProfile.finish_type) {
+                return;
+            }
+            
+            currentStep = 3;
+            updateProgressBar();
+            showStep(3);
+            startProcessing();
+        }
+
+        function goToStep4() {
+            currentStep = 4;
+            updateProgressBar();
+            showStep(4);
+            displayResults();
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            for (let i = 1; i <= 4; i++) {
+                const step = document.getElementById(`step${i}`);
+                const line = document.getElementById(`line${i}`);
+                
+                if (i < currentStep) {
+                    step.className = 'step-indicator completed';
+                    step.innerHTML = '<i class="fas fa-check text-xs"></i>';
+                    if (line) line.className = 'progress-line active';
+                } else if (i === currentStep) {
+                    step.className = 'step-indicator active';
+                    step.textContent = i;
+                    if (line) line.className = 'progress-line';
+                } else {
+                    step.className = 'step-indicator';
+                    step.textContent = i;
+                    if (line) line.className = 'progress-line';
+                }
+            }
+            
+            const titles = ['Выбор оттенков', 'Профиль кожи', 'Анализ', 'Результаты'];
+            document.getElementById('current-step-title').textContent = titles[currentStep - 1];
+        }
+
+        // Show step
+        function showStep(step) {
+            for (let i = 1; i <= 4; i++) {
+                const content = document.getElementById(`step${i}-content`);
+                if (i === step) {
+                    content.classList.remove('hidden');
+                    content.classList.add('fade-in');
+                } else {
+                    content.classList.add('hidden');
+                }
+            }
+        }
+
+        // Load calibration cards
+        function loadCalibrationCards() {
+            const container = document.getElementById('calibration-section');
+            
+            container.innerHTML = cosmeticBag.map(cosmetic => `
+                <div class="cosmetic-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <div class="font-semibold text-gray-900">${cosmetic.brand}</div>
+                            <div class="text-sm text-gray-600">${cosmetic.product}</div>
+                            <div class="text-sm text-beige-600">${cosmetic.shade_value || 'Без оттенка'}</div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 border border-beige-200 rounded-lg cursor-pointer hover:bg-beige-50">
+                            <input type="radio" name="calibration_${cosmetic.id}" value="perfect" class="mr-3" checked>
+                            <span class="text-sm">Идеально, хочу такой же результат</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-beige-200 rounded-lg cursor-pointer hover:bg-beige-50">
+                            <input type="radio" name="calibration_${cosmetic.id}" value="lighter_darker" class="mr-3">
+                            <span class="text-sm">В целом ок, но хочу чуть светлее/темнее</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-beige-200 rounded-lg cursor-pointer hover:bg-beige-50">
+                            <input type="radio" name="calibration_${cosmetic.id}" value="wrong_undertone" class="mr-3">
+                            <span class="text-sm">Текстура супер, но подтон не мой</span>
+                        </label>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Quiz functions
+        function selectQuizOption(element, field, value) {
+            // Remove selected class from siblings
+            element.parentElement.querySelectorAll('.quiz-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class
+            element.classList.add('selected');
+            
+            // Save value
+            userProfile[field] = value;
+            saveData();
+            
+            // Check if we can show continue button
+            if (cosmeticBag.length > 0 && userProfile.skin_type && userProfile.finish_type) {
+                document.getElementById('continue-to-step3').classList.remove('hidden');
+            }
+        }
+
+        // Update profile display
+        function updateProfileDisplay() {
+            // Update selected cards
+            document.querySelectorAll('.quiz-card').forEach(card => {
+                const onclick = card.getAttribute('onclick');
+                if (onclick) {
+                    const match = onclick.match(/'([^']+)'/g);
+                    if (match && match.length >= 2) {
+                        const field = match[0].replace(/'/g, '');
+                        const value = match[1].replace(/'/g, '');
+                        
+                        if (userProfile[field] === value) {
+                            card.classList.add('selected');
+                        }
+                    }
+                }
+            });
+        }
+
+        // Start processing
+        function startProcessing() {
+            let progress = 0;
+            const progressBar = document.getElementById('processing-progress');
+            
+            const steps = [
+                { id: 'processing-step1', delay: 0 },
+                { id: 'processing-step2', delay: 800 },
+                { id: 'processing-step3', delay: 1600 }
+            ];
+            
+            steps.forEach(step => {
+                setTimeout(() => {
+                    const element = document.getElementById(step.id);
+                    const dot = element.querySelector('.w-3');
+                    dot.className = 'w-3 h-3 bg-beige-600 rounded-full';
+                    element.querySelector('span').className = 'text-sm text-gray-700';
+                    
+                    progress += 33;
+                    progressBar.style.width = progress + '%';
+                }, step.delay);
+            });
+            
+            setTimeout(() => {
+                goToStep4();
+            }, 2500);
+        }
+
+        // Display results
+        async function displayResults() {
+            const container = document.getElementById('results-container');
+            
+            container.innerHTML = '<div class="text-center py-12"><div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-burgundy-400"></div></div>';
+            
+            try {
+                recommendations = [];
+                
+                for (const cosmetic of cosmeticBag) {
+                    const response = await fetch(`${API_BASE}/equivalents/${cosmetic.id}`);
+                    const equivalents = await response.json();
+                    
+                    equivalents.forEach(eq => {
+                        const userBrands = new Set(cosmeticBag.map(c => c.brand));
+                        if (!userBrands.has(eq.shade.brand)) {
+                            recommendations.push({
+                                ...eq,
+                                sourceCosmetic: cosmetic
+                            });
+                        }
+                    });
+                }
+                
+                recommendations.sort((a, b) => b.confidence - a.confidence);
+                displayRecommendationsHTML(recommendations.slice(0, 6));
+                
+            } catch (error) {
+                console.error('Error getting recommendations:', error);
+                container.innerHTML = '<div class="text-center py-12 text-red-600">Ошибка загрузки рекомендаций</div>';
+            }
+        }
+
+        // Display recommendations HTML
+        function displayRecommendationsHTML(recs) {
+            const container = document.getElementById('results-container');
+            
+            if (recs.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <p class="text-gray-600">Пока нет рекомендаций. Попробуй добавить другие оттенки.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const bestMatch = recs[0];
+            const alternatives = recs.slice(1);
+            
+            let html = `
+                <!-- Best Match -->
+                <div class="beige-card p-6 mb-6 border-2 border-beige-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <div class="serif-font text-xl font-bold text-gray-900">${bestMatch.shade.brand}</div>
+                            <div class="text-gray-600">${bestMatch.shade.product}</div>
+                        </div>
+                        <div class="match-badge">${Math.round(bestMatch.confidence * 100)}% совпадение</div>
+                    </div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        ${bestMatch.shade.shade_value ? `
+                            <div class="shade-circle" style="background: ${getShadeColor(bestMatch.shade.shade_value)}"></div>
+                            <span class="text-lg font-medium text-beige-600">${bestMatch.shade.shade_value}</span>
+                        ` : ''}
+                    </div>
+                    <div class="text-sm text-gray-500 mb-6">
+                        На 0.5 тона светлее твоего ${bestMatch.sourceCosmetic.brand} ${bestMatch.sourceCosmetic.shade_value || ''}
+                    </div>
+                    <button class="w-full beige-button-dark py-3 rounded-lg font-semibold">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Купить в GoldApple
+                    </button>
+                </div>
+                
+                <!-- Alternatives -->
+                <div class="space-y-4">
+                    ${alternatives.map(rec => `
+                        <div class="beige-card p-4">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <div class="font-semibold text-gray-900">${rec.shade.brand}</div>
+                                    <div class="text-sm text-gray-600">${rec.shade.product}</div>
+                                </div>
+                                <div class="text-xs bg-beige-100 text-beige-700 px-2 py-1 rounded">
+                                    ${Math.round(rec.confidence * 100)}%
+                                </div>
+                            </div>
+                            <div class="text-beige-600 font-medium mb-4">${rec.shade.shade_value || 'Без оттенка'}</div>
+                            <button class="w-full beige-outline py-2 rounded-lg text-sm">
+                                <i class="fas fa-shopping-cart mr-2"></i>
+                                Купить
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        // Get shade color with enhanced mapping
+        function getShadeColor(shadeValue) {
+            if (!shadeValue) return '#E3D5CA';
+            
+            // Enhanced color mapping
+            const colorMap = {
+                // Light shades
+                '01': '#FFF8F0', '02': '#FFE4E1', '03': '#FFDAB9', '04': '#FFE4B5',
+                '05': '#F5DEB3', '06': '#F4C2C2', '07': '#FFC0CB', '08': '#FFB6C1',
+                '09': '#FFA07A', '10': '#FAEBD7', '11': '#F5F5DC', '12': '#FFF8DC',
+                '13': '#FFFACD', '14': '#F0E68C', '15': '#EEE8AA', '16': '#F0E68C',
+                
+                // Medium-light shades
+                '20': '#FFDAB9', '21': '#FFB6C1', '22': '#FFA07A', '23': '#FF8C69',
+                '24': '#FF7F50', '25': '#FF6347', '26': '#FF4500', '27': '#FFA500',
+                '28': '#FF8C00', '29': '#FF7F50', '30': '#FF6347', '31': '#CD853F',
+                
+                // Medium shades
+                '30': '#E0FFFF', '31': '#AFEEEE', '32': '#87CEEB', '33': '#4682B4',
+                '34': '#5F9EA0', '35': '#6495ED', '36': '#4169E1', '37': '#0000CD',
+                '38': '#00008B', '39': '#000080', '40': '#191970', '41': '#F5FFFA',
+                
+                // Beige/natural shades
+                '60': '#F5F5DC', '61': '#FFFAF0', '62': '#FDF5E6', '63': '#FAF0E6',
+                '64': '#FAEBD7', '65': '#F5DEB3', '66': '#FFE4B5', '67': '#FFDEAD',
+                '68': '#F5DEB3', '69': '#FFE4B5', '70': '#FFDEAD', '71': '#D2B48C',
+                
+                // Warm/olive shades
+                '70': '#BC9A6A', '71': '#A0826D', '72': '#8B7355', '73': '#704214',
+                '74': '#8B4513', '75': '#A0522D', '76': '#CD853F', '77': '#DEB887',
+                '78': '#F4A460', '79': '#D2691E', '80': '#8B4513', '81': '#A0522D',
+                
+                // Dark/warm shades
+                '80': '#8B7355', '81': '#A0826D', '82': '#BC9A6A', '83': '#D2B48C',
+                '84': '#DEB887', '85': '#F4A460', '86': '#CD853F', '87': '#D2691E',
+                '88': '#8B4513', '89': '#A0522D', '90': '#704214', '91': '#5D4E37',
+                
+                // Dark shades
+                '90': '#704214', '91': '#5D4E37', '92': '#3E2723', '93': '#4E342E',
+                '94': '#5D4037', '95': '#6D4C41', '96': '#795548', '97': '#8D6E63',
+                '98': '#A1887F', '99': '#BCAAA4', '100': '#BDBDBD', '101': '#9E9E9E'
+            };
+            
+            // Extract code from shade value
+            const code = shadeValue.split(/[\s,-]+/)[0];
+            
+            // Try exact match first
+            if (colorMap[code]) {
+                return colorMap[code];
+            }
+            
+            // Try numeric extraction
+            const numericCode = shadeValue.match(/\d+/);
+            if (numericCode) {
+                const num = numericCode[0];
+                if (colorMap[num]) {
+                    return colorMap[num];
+                }
+            }
+            
+            // Generate color based on shade name characteristics
+            const lowerShade = shadeValue.toLowerCase();
+            
+            if (lowerShade.includes('light') || lowerShade.includes('светлый') || lowerShade.includes('fair')) {
+                return '#FFF8F0';
+            } else if (lowerShade.includes('medium') || lowerShade.includes('средний')) {
+                return '#D2B48C';
+            } else if (lowerShade.includes('dark') || lowerShade.includes('темный')) {
+                return '#8B4513';
+            } else if (lowerShade.includes('warm') || lowerShade.includes('теплый')) {
+                return '#DEB887';
+            } else if (lowerShade.includes('cool') || lowerShade.includes('холодный')) {
+                return '#87CEEB';
+            } else if (lowerShade.includes('beige') || lowerShade.includes('бежевый')) {
+                return '#F5DEB3';
+            } else if (lowerShade.includes('pink') || lowerShade.includes('розовый')) {
+                return '#FFB6C1';
+            } else if (lowerShade.includes('golden') || lowerShade.includes('золотой')) {
+                return '#FFD700';
+            } else if (lowerShade.includes('ivory') || lowerShade.includes('слоновый')) {
+                return '#FFFFF0';
+            } else if (lowerShade.includes('porcelain') || lowerShade.includes('фарфор')) {
+                return '#FFF8DC';
+            }
+            
+            // Default beige
+            return '#E3D5CA';
+        }
+
+        // Feedback functions
+        function feedback(answer) {
+            if (answer === 'yes') {
+                document.getElementById('feedback-section').innerHTML = '<p class="text-green-600">Спасибо! Твой отзыв поможет улучшить рекомендации.</p>';
+            } else {
+                document.getElementById('feedback-details').classList.remove('hidden');
+            }
+        }
+
+        function feedbackReason(reason) {
+            console.log('Feedback reason:', reason);
+            document.getElementById('feedback-section').innerHTML = '<p class="text-green-600">Спасибо за обратную связь!</p>';
+        }
+    </script>
+</body>
+</html>

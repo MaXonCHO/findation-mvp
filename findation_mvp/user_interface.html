@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Findation - Найди свой идеальный оттенок</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .shade-card {
+            transition: all 0.3s ease;
+        }
+        .shade-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Findation</h1>
+            <p class="text-xl text-gray-600">Узнай, какие оттенки других брендов тебе подойдут</p>
+            <div class="mt-4 text-sm text-gray-500">
+                На основе данных от реальных пользователей
+            </div>
+        </header>
+
+        <!-- Main Interface -->
+        <main>
+            <!-- Step 1: Add Your Shades -->
+            <section class="mb-8">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mr-3">1</div>
+                        <h2 class="text-2xl font-semibold text-gray-900">Добавь свои оттенки</h2>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Введи тональные средства, которые тебе идеально подходят. Чем больше оттенков ты добавишь, тем точнее будут рекомендации.
+                    </p>
+
+                    <!-- Search/Select Interface -->
+                    <div class="space-y-4 mb-6">
+                        <!-- Brand/Product/Shade Selectors -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Бренд</label>
+                                <select id="brand-select" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Выберите бренд...</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Продукт</label>
+                                <select id="product-select" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" disabled>
+                                    <option value="">Сначала выберите бренд</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Оттенок</label>
+                                <select id="shade-select" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" disabled>
+                                    <option value="">Сначала выберите продукт</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Add Button -->
+                        <button 
+                            onclick="addUserShade()"
+                            class="w-full md:w-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
+                        >
+                            + Добавить оттенок
+                        </button>
+                    </div>
+
+                    <!-- User Shades List -->
+                    <div id="user-shades-container" class="hidden">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-medium text-gray-900">Твои оттенки:</h3>
+                            <div class="space-x-2">
+                                <button 
+                                    onclick="saveUserShades()"
+                                    class="px-3 py-1 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition"
+                                >
+                                    💾 Сохранить
+                                </button>
+                                <button 
+                                    onclick="clearUserShades()"
+                                    class="px-3 py-1 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition"
+                                >
+                                    🗑️ Очистить
+                                </button>
+                            </div>
+                        </div>
+                        <div id="user-shades-list" class="space-y-2"></div>
+                        <div id="save-message" class="hidden mt-2 text-sm text-green-600"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Get Recommendations -->
+            <section class="mb-8" id="recommendations-section" class="hidden">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold mr-3">2</div>
+                        <h2 class="text-2xl font-semibold text-gray-900">Твои идеальные оттенки</h2>
+                    </div>
+
+                    <div id="recommendations-content">
+                        <!-- Recommendations will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3: Add Connections (Optional) -->
+            <section class="mb-8" id="connections-section" class="hidden">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold mr-3">3</div>
+                        <h2 class="text-2xl font-semibold text-gray-900">Помоги другим пользователям</h2>
+                    </div>
+
+                    <p class="text-gray-600 mb-6">
+                        Если ты пробовал оттенки из рекомендаций и они тебе подошли, добавь связь. Это поможет другим пользователям найти свои идеальные оттенки.
+                    </p>
+
+                    <div id="connection-form" class="space-y-4">
+                        <!-- Connection form will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-12">
+            <p>Findation — кросс-брендовый переводчик оттенков тональных средств</p>
+            <p class="mt-2">Основано на реальных отзывах пользователей</p>
+        </footer>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        let userShades = [];
+        let recommendations = [];
+
+        // Load brands on startup
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBrands();
+            loadUserShades(); // Load saved shades on startup
+            
+            document.getElementById('brand-select').addEventListener('change', function() {
+                loadProducts(this.value);
+            });
+            
+            document.getElementById('product-select').addEventListener('change', function() {
+                loadShades(this.value);
+            });
+        });
+
+        // Load brands
+        async function loadBrands() {
+            try {
+                const response = await fetch(`${API_BASE}/brands`);
+                const data = await response.json();
+                const brandSelect = document.getElementById('brand-select');
+                
+                brandSelect.innerHTML = '<option value="">Выберите бренд...</option>';
+                data.brands.forEach(brand => {
+                    const option = document.createElement('option');
+                    option.value = brand;
+                    option.textContent = brand;
+                    brandSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Ошибка загрузки брендов:', error);
+            }
+        }
+
+        // Load products for brand
+        async function loadProducts(brand) {
+            const productSelect = document.getElementById('product-select');
+            const shadeSelect = document.getElementById('shade-select');
+            
+            if (!brand) {
+                productSelect.disabled = true;
+                productSelect.innerHTML = '<option value="">Сначала выберите бренд</option>';
+                shadeSelect.disabled = true;
+                shadeSelect.innerHTML = '<option value="">Сначала выберите продукт</option>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/brands/${encodeURIComponent(brand)}/shades`);
+                const data = await response.json();
+                
+                const products = [...new Set(data.shades.map(shade => shade.product))];
+                
+                productSelect.disabled = false;
+                productSelect.innerHTML = '<option value="">Выберите продукт...</option>';
+                products.forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product;
+                    option.textContent = product;
+                    productSelect.appendChild(option);
+                });
+                
+                productSelect.dataset.shades = JSON.stringify(data.shades);
+                
+                shadeSelect.disabled = true;
+                shadeSelect.innerHTML = '<option value="">Сначала выберите продукт</option>';
+            } catch (error) {
+                console.error('Ошибка загрузки продуктов:', error);
+            }
+        }
+
+        // Load shades for product
+        function loadShades(product) {
+            const shadeSelect = document.getElementById('shade-select');
+            const productSelect = document.getElementById('product-select');
+            
+            if (!product) {
+                shadeSelect.disabled = true;
+                shadeSelect.innerHTML = '<option value="">Сначала выберите продукт</option>';
+                return;
+            }
+
+            const allShades = JSON.parse(productSelect.dataset.shades || '[]');
+            const productShades = allShades.filter(shade => shade.product === product);
+            
+            shadeSelect.disabled = false;
+            shadeSelect.innerHTML = '<option value="">Выберите оттенок...</option>';
+            
+            productShades.forEach(shade => {
+                const option = document.createElement('option');
+                option.value = shade.id;
+                option.textContent = shade.shade_value || 'Без оттенка';
+                shadeSelect.appendChild(option);
+            });
+        }
+
+        // Add shade to user's list
+        function addUserShade() {
+            const brandSelect = document.getElementById('brand-select');
+            const productSelect = document.getElementById('product-select');
+            const shadeSelect = document.getElementById('shade-select');
+            
+            const selectedOption = shadeSelect.options[shadeSelect.selectedIndex];
+            if (!selectedOption.value) {
+                alert('Пожалуйста, выберите оттенок');
+                return;
+            }
+
+            const allShades = JSON.parse(productSelect.dataset.shades || '[]');
+            const shadeData = allShades.find(s => s.id === selectedOption.value);
+            
+            if (!shadeData) return;
+
+            // Check if already added
+            if (userShades.find(s => s.id === shadeData.id)) {
+                alert('Этот оттенок уже добавлен');
+                return;
+            }
+
+            userShades.push(shadeData);
+            updateUserShadesList();
+            
+            // Reset selectors
+            brandSelect.value = '';
+            productSelect.disabled = true;
+            productSelect.innerHTML = '<option value="">Сначала выберите бренд</option>';
+            shadeSelect.disabled = true;
+            shadeSelect.innerHTML = '<option value="">Сначала выберите продукт</option>';
+            
+            // Show recommendations if we have at least one shade
+            if (userShades.length >= 1) {
+                showRecommendations();
+            }
+        }
+
+        // Update user shades list display
+        function updateUserShadesList() {
+            const container = document.getElementById('user-shades-container');
+            const list = document.getElementById('user-shades-list');
+            
+            container.classList.remove('hidden');
+            list.innerHTML = '';
+            
+            userShades.forEach((shade, index) => {
+                const shadeDiv = document.createElement('div');
+                shadeDiv.className = 'fade-in shade-card flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200';
+                shadeDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
+                        <div>
+                            <div class="font-medium text-gray-900">${shade.brand}</div>
+                            <div class="text-sm text-gray-600">${shade.product}</div>
+                            <div class="text-sm text-blue-600 font-medium">${shade.shade_value || 'Без оттенка'}</div>
+                        </div>
+                    </div>
+                    <button 
+                        onclick="removeUserShade(${index})"
+                        class="text-red-500 hover:text-red-700 transition"
+                    >
+                        ✕
+                    </button>
+                `;
+                list.appendChild(shadeDiv);
+            });
+        }
+
+        // Remove shade from user's list
+        function removeUserShade(index) {
+            userShades.splice(index, 1);
+            updateUserShadesList();
+            
+            if (userShades.length === 0) {
+                document.getElementById('recommendations-section').classList.add('hidden');
+                document.getElementById('connections-section').classList.add('hidden');
+            }
+        }
+
+        // Save user shades to localStorage
+        function saveUserShades() {
+            try {
+                localStorage.setItem('findation_user_shades', JSON.stringify(userShades));
+                showMessage('Оттенки сохранены! ✅', 'success');
+            } catch (error) {
+                console.error('Ошибка сохранения:', error);
+                showMessage('Ошибка сохранения', 'error');
+            }
+        }
+
+        // Load user shades from localStorage
+        function loadUserShades() {
+            try {
+                const saved = localStorage.getItem('findation_user_shades');
+                if (saved) {
+                    userShades = JSON.parse(saved);
+                    if (userShades.length > 0) {
+                        updateUserShadesList();
+                        showRecommendations();
+                    }
+                }
+            } catch (error) {
+                console.error('Ошибка загрузки:', error);
+            }
+        }
+
+        // Clear all user shades
+        function clearUserShades() {
+            if (confirm('Ты уверен, что хочешь удалить все сохраненные оттенки?')) {
+                userShades = [];
+                localStorage.removeItem('findation_user_shades');
+                document.getElementById('user-shades-container').classList.add('hidden');
+                document.getElementById('recommendations-section').classList.add('hidden');
+                document.getElementById('connections-section').classList.add('hidden');
+                showMessage('Оттенки удалены', 'success');
+            }
+        }
+
+        // Show message to user
+        function showMessage(text, type = 'success') {
+            const messageDiv = document.getElementById('save-message');
+            messageDiv.textContent = text;
+            messageDiv.className = `mt-2 text-sm ${type === 'success' ? 'text-green-600' : 'text-red-600'}`;
+            messageDiv.classList.remove('hidden');
+            
+            setTimeout(() => {
+                messageDiv.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Get recommendations based on user shades
+        async function showRecommendations() {
+            const section = document.getElementById('recommendations-section');
+            const content = document.getElementById('recommendations-content');
+            
+            section.classList.remove('hidden');
+            content.innerHTML = '<div class="text-center py-8"><div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div></div>';
+            
+            recommendations = [];
+            
+            // Get equivalents for each user shade
+            for (const userShade of userShades) {
+                try {
+                    const response = await fetch(`${API_BASE}/equivalents/${userShade.id}`);
+                    const equivalents = await response.json();
+                    
+                    equivalents.forEach(eq => {
+                        // Don't recommend shades from the same brand as user's existing shades
+                        const userBrands = new Set(userShades.map(s => s.brand));
+                        if (!userBrands.has(eq.shade.brand)) {
+                            recommendations.push({
+                                ...eq,
+                                sourceShade: userShade
+                            });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Ошибка получения эквивалентов:', error);
+                }
+            }
+            
+            // Sort by confidence and remove duplicates
+            const uniqueRecs = [];
+            const seen = new Set();
+            
+            recommendations
+                .sort((a, b) => b.confidence - a.confidence)
+                .forEach(rec => {
+                    const key = `${rec.shade.brand}_${rec.shade.product}_${rec.shade.shade_value}`;
+                    if (!seen.has(key)) {
+                        seen.add(key);
+                        uniqueRecs.push(rec);
+                    }
+                });
+            
+            displayRecommendations(uniqueRecs.slice(0, 12)); // Show top 12
+        }
+
+        // Display recommendations
+        function displayRecommendations(recommendations) {
+            const content = document.getElementById('recommendations-content');
+            
+            if (recommendations.length === 0) {
+                content.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="text-gray-500 mb-4">😔</div>
+                        <p class="text-gray-600">Пока нет рекомендаций. Добавь больше оттенков или попробуй позже.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const recommendationsHTML = recommendations.map((rec, index) => `
+                <div class="shade-card bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 cursor-pointer" onclick="selectRecommendation(${index})">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-lg font-semibold text-gray-900">${rec.shade.brand}</div>
+                            <div class="text-sm text-gray-600">${rec.shade.product}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs text-gray-500">Уверенность</div>
+                            <div class="text-lg font-bold text-green-600">${Math.round(rec.confidence * 100)}%</div>
+                        </div>
+                    </div>
+                    <div class="text-blue-600 font-medium mb-3">${rec.shade.shade_value || 'Без оттенка'}</div>
+                    <div class="text-xs text-gray-500">
+                        На основе: ${rec.sourceShade.brand} ${rec.sourceShade.shade_value}
+                    </div>
+                </div>
+            `).join('');
+            
+            content.innerHTML = `
+                <div class="mb-6">
+                    <p class="text-gray-600">Найдено ${recommendations.length} оттенков, которые могут тебе подойти:</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${recommendationsHTML}
+                </div>
+            `;
+            
+            // Show connections section
+            document.getElementById('connections-section').classList.remove('hidden');
+        }
+
+        // Select a recommendation for connection
+        function selectRecommendation(index) {
+            const rec = recommendations[index];
+            const form = document.getElementById('connection-form');
+            
+            form.innerHTML = `
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                    <div class="font-medium">${rec.shade.brand} ${rec.shade.shade_value || 'Без оттенка'}</div>
+                    <div class="text-sm text-gray-600">${rec.shade.product}</div>
+                    <div class="text-sm text-blue-600 mt-1">Уверенность: ${Math.round(rec.confidence * 100)}%</div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Этот оттенок тебе подошел?</label>
+                        <div class="space-x-4">
+                            <button 
+                                onclick="confirmConnection('${rec.shade.id}', true)"
+                                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                            >
+                                ✓ Да, идеально подошел
+                            </button>
+                            <button 
+                                onclick="confirmConnection('${rec.shade.id}', false)"
+                                class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+                            >
+                                ✗ Нет, не подошел
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Confirm connection
+        async function confirmConnection(shadeId, isMatch) {
+            if (!isMatch) {
+                // Just remove from recommendations
+                recommendations = recommendations.filter(r => r.shade.id !== shadeId);
+                displayRecommendations(recommendations);
+                document.getElementById('connection-form').innerHTML = '';
+                return;
+            }
+
+            // Add connections to all user shades
+            for (const userShade of userShades) {
+                try {
+                    await fetch(`${API_BASE}/links`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            shade1_id: userShade.id,
+                            shade2_id: shadeId,
+                            weight: 2 // Higher weight for confirmed matches
+                        })
+                    });
+                } catch (error) {
+                    console.error('Ошибка добавления связи:', error);
+                }
+            }
+            
+            // Show success message
+            document.getElementById('connection-form').innerHTML = `
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <div class="text-green-800 font-medium">✅ Спасибо! Твой отзыв поможет другим пользователям.</div>
+                </div>
+            `;
+            
+            // Remove from recommendations
+            setTimeout(() => {
+                recommendations = recommendations.filter(r => r.shade.id !== shadeId);
+                displayRecommendations(recommendations);
+                document.getElementById('connection-form').innerHTML = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
