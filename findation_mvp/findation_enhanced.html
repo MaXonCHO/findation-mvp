@@ -954,21 +954,27 @@
             const productSelect = document.getElementById('product-select');
             const shadeSelect = document.getElementById('shade-select');
             
-            const selectedOption = shadeSelect.options[shadeSelect.selectedIndex];
-            if (!selectedOption.value) {
+            if (!brandSelect.value || !productSelect.value || !shadeSelect.value) {
+                alert('Пожалуйста, выберите бренд, линейку и оттенок');
                 return;
             }
-
-            const shades = JSON.parse(productSelect.dataset.shades || '[]');
-            const shade = shades.find(s => s.id === selectedOption.value);
             
-            if (!shade) return;
+            // Create shade object from demo data
+            const shade = {
+                id: `${brandSelect.value}_${productSelect.value}_${shadeSelect.value}`,
+                brand: brandSelect.value,
+                product: productSelect.value,
+                shade_value: shadeSelect.value,
+                shade_name: shadeSelect.value
+            };
 
             if (cosmeticBag.find(item => item.id === shade.id)) {
+                alert('Этот продукт уже в косметичке');
                 return;
             }
             
             if (cosmeticBag.length >= 3) {
+                alert('Максимум 3 продукта в косметичке');
                 return;
             }
 
@@ -982,6 +988,8 @@
             productSelect.innerHTML = '<option value="">Сначала выберите бренд</option>';
             shadeSelect.disabled = true;
             shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
+            
+            alert('Продукт добавлен в косметичку!');
         }
 
         // Update cosmetic bag display
