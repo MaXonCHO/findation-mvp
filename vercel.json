@@ -2,14 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "findation_mvp/findation_enhanced.html",
+      "src": "findation_mvp/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
+      "src": "/",
+      "dest": "/findation_mvp/findation_enhanced.html"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/findation_enhanced.html"
+      "dest": "/findation_mvp/$1"
     }
   ]
 }
