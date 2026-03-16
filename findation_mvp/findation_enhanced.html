@@ -1228,22 +1228,22 @@
             }, 2500);
         }
 
-        // Demo recommendations for MVP
+        // Demo recommendations for MVP - only working links from CSV
         const DEMO_RECOMMENDATIONS = {
             'MAC_NC15': [
                 { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.95, depth: 1, link: 'https://goldapple.ru/19000032252-forever' },
-                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
-                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' }
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' }
+                // Убираем YSL так как нет точной ссылки
             ],
             'Dior_021': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.95, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
-                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
-                { brand: 'Lancôme', product: 'Teint Idole', shade_value: '200', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/20083300014-lancome-teint-idole' }
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' }
+                // Убираем Lancôme так как нет в базе
             ],
             'Clarins_101W': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.91, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
-                { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
-                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' }
+                { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/19000032252-forever' }
+                // Убираем YSL так как нет точной ссылки
             ]
         };
 
