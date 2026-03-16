@@ -1249,12 +1249,23 @@
                 recommendations = [];
                 const userBrands = new Set(cosmeticBag.map(c => c.brand));
                 
+                console.log('=== ПОИСК РЕКОМЕНДАЦИЙ ===');
+                console.log('Косметичка:', cosmeticBag);
+                console.log('Бренды пользователя:', Array.from(userBrands));
+                console.log('Доступные ключи в DEMO_RECOMMENDATIONS:', Object.keys(DEMO_RECOMMENDATIONS));
+                
                 for (const cosmetic of cosmeticBag) {
                     const cosmeticKey = `${cosmetic.brand}_${cosmetic.shade_value}`;
+                    console.log(`Ищу ключ: "${cosmeticKey}"`);
+                    
                     const demoRecs = DEMO_RECOMMENDATIONS[cosmeticKey] || [];
+                    console.log(`Найдено рекомендаций для "${cosmeticKey}":`, demoRecs.length);
                     
                     demoRecs.forEach(rec => {
+                        console.log(`Проверяю рекомендацию: ${rec.brand} (пользовательский бренд: ${userBrands.has(rec.brand)})`);
+                        
                         if (!userBrands.has(rec.brand)) {
+                            console.log(`✅ Добавляю рекомендацию: ${rec.brand} ${rec.product}`);
                             recommendations.push({
                                 shade: {
                                     id: `${rec.brand}_${rec.product}_${rec.shade_value}`,
@@ -1267,9 +1278,14 @@
                                 depth: rec.depth,
                                 sourceCosmetic: cosmetic
                             });
+                        } else {
+                            console.log(`⏭️ Пропускаю тот же бренд: ${rec.brand}`);
                         }
                     });
                 }
+                
+                console.log('Итоговые рекомендации:', recommendations);
+                console.log('=== КОНЕЦ ПОИСКА РЕКОМЕНДАЦИЙ ===');
                 
                 recommendations.sort((a, b) => b.confidence - a.confidence);
                 displayRecommendationsHTML(recommendations.slice(0, 6));
