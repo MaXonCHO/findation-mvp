@@ -697,12 +697,12 @@
                 'NARS': ['NARS Natural Radiant Longwear', 'NARS Sheer Glow', 'NARS All Day Luminous']
             },
             shades: {
-                'Dior Forever': ['021', '030', '031', '040', '050', '060'],
-                'MAC Studio Fix Fluid': ['NC15', 'NC20', 'NC25', 'NC30', 'NC35', 'NC40', 'NC45'],
-                'Clarins Skin Illusion': ['101W', '105N', '108C', '110', '112', '115'],
-                'Chanel Vitalumière Aqua': ['10 Beige', '20 Beige', '30 Beige', '40 Beige'],
-                'YSL All Hours': ['BR10', 'BR20', 'BR30', 'BR40', 'BR50'],
-                'Estée Lauder Double Wear': ['1C1', '1N1', '2C1', '2N1', '3C1', '3N1'],
+                'Dior Forever': ['021', '030', '031', '040', '050', '060', '070', '080', '090', '100', '110', '120'],
+                'MAC Studio Fix Fluid': ['NC15', 'NC20', 'NC25', 'NC30', 'NC35', 'NC40', 'NC45', 'NC50', 'NW10', 'NW15', 'NW20', 'NW25', 'NW30', 'NW35', 'NW40', 'NW45'],
+                'Clarins Skin Illusion': ['101W', '105N', '108C', '110', '112', '115', '117', '118', '119', '120'],
+                'Chanel Vitalumière Aqua': ['10 Beige', '20 Beige', '30 Beige', '40 Beige', '50 Beige'],
+                'YSL All Hours': ['BR10', 'BR20', 'BR30', 'BR40', 'BR50', 'BR60', 'BR70', 'BR80'],
+                'Estée Lauder Double Wear': ['1C1', '1N1', '2C1', '2N1', '2W1', '3C1', '3N1', '4C1', '4N1'],
                 'Lancôme Teint Idole': ['100', '200', '300', '400', '500'],
                 'NARS Natural Radiant': ['Oslo', 'St. Moritz', 'Monte Carlo', 'Barcelona', 'Syracuse']
             }
@@ -1228,22 +1228,59 @@
             }, 2500);
         }
 
-        // Demo recommendations for MVP - only working links from CSV
+        // Demo recommendations for MVP - comprehensive testing for all shades
         const DEMO_RECOMMENDATIONS = {
+            // MAC shades recommendations
             'MAC_NC15': [
                 { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.95, depth: 1, link: 'https://goldapple.ru/19000032252-forever' },
-                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' }
-                // Убираем YSL так как нет точной ссылки
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.85, depth: 2, link: 'https://goldapple.ru/19000013042' }
             ],
+            'MAC_NC20': [
+                { brand: 'Dior', product: 'Forever', shade_value: '030', confidence: 0.94, depth: 1, link: 'https://goldapple.ru/19000032252-forever' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '105N', confidence: 0.87, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR20', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' }
+            ],
+            'MAC_NC25': [
+                { brand: 'Dior', product: 'Forever', shade_value: '040', confidence: 0.93, depth: 1, link: 'https://goldapple.ru/19000032252-forever' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '108C', confidence: 0.86, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' }
+            ],
+            
+            // Dior shades recommendations
             'Dior_021': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.95, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
-                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' }
-                // Убираем Lancôme так как нет в базе
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' }
             ],
+            'Dior_030': [
+                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC20', confidence: 0.94, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '105N', confidence: 0.87, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' }
+            ],
+            
+            // Clarins shades recommendations
             'Clarins_101W': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.91, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
-                { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/19000032252-forever' }
-                // Убираем YSL так как нет точной ссылки
+                { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/19000013042' }
+            ],
+            'Clarins_105N': [
+                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC20', confidence: 0.90, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
+                { brand: 'Dior', product: 'Forever', shade_value: '030', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' }
+            ],
+            
+            // Chanel shades recommendations  
+            'Chanel_10 Beige': [
+                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.92, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
+                { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.90, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.85, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' }
+            ],
+            'Chanel_20 Beige': [
+                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC20', confidence: 0.91, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
+                { brand: 'Dior', product: 'Forever', shade_value: '030', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '105N', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' }
             ]
         };
 
