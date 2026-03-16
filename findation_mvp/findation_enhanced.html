@@ -1020,11 +1020,9 @@
             // Reset selectors
             brandSelect.value = '';
             productSelect.disabled = true;
-            productSelect.innerHTML = '<option value="">Сначала выберите бренд</option>';
+            productSelect.innerHTML = '<option value="">Выберите линейку...</option>';
             shadeSelect.disabled = true;
             shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
-            
-            alert('Продукт добавлен в косметичку!');
         }
 
         // Update cosmetic bag display
@@ -1261,53 +1259,87 @@
             'MAC_NC15': [
                 { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.95, depth: 1, link: 'https://goldapple.ru/19000032252-forever' },
                 { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
-                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.85, depth: 2, link: 'https://goldapple.ru/19000013042' }
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.85, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '1N1', confidence: 0.80, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+1N1' }
             ],
             'MAC_NC20': [
                 { brand: 'Dior', product: 'Forever', shade_value: '030', confidence: 0.94, depth: 1, link: 'https://goldapple.ru/19000032252-forever' },
                 { brand: 'Clarins', product: 'Skin Illusion', shade_value: '105N', confidence: 0.87, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
-                { brand: 'YSL', product: 'All Hours', shade_value: 'BR20', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' }
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR20', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '2N1', confidence: 0.79, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+2N1' }
             ],
             'MAC_NC25': [
                 { brand: 'Dior', product: 'Forever', shade_value: '040', confidence: 0.93, depth: 1, link: 'https://goldapple.ru/19000032252-forever' },
                 { brand: 'Clarins', product: 'Skin Illusion', shade_value: '108C', confidence: 0.86, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
-                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' }
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR30', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '2N1', confidence: 0.78, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+2N1' }
             ],
             
             // Dior shades recommendations
             'Dior_021': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.95, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
                 { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
-                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' }
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '1N1', confidence: 0.81, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+1N1' }
             ],
             'Dior_030': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC20', confidence: 0.94, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
                 { brand: 'Clarins', product: 'Skin Illusion', shade_value: '105N', confidence: 0.87, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
-                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' }
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR20', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '2N1', confidence: 0.80, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+2N1' }
             ],
             
             // Clarins shades recommendations
             'Clarins_101W': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.91, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
                 { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
-                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/19000013042' }
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '1N1', confidence: 0.79, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+1N1' }
             ],
             'Clarins_105N': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC20', confidence: 0.90, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
                 { brand: 'Dior', product: 'Forever', shade_value: '030', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
-                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' }
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR20', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '2N1', confidence: 0.78, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+2N1' }
             ],
             
             // Chanel shades recommendations  
             'Chanel_10 Beige': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.92, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
                 { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.90, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
-                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.85, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' }
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.85, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '1N1', confidence: 0.80, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+1N1' }
             ],
             'Chanel_20 Beige': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC20', confidence: 0.91, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
                 { brand: 'Dior', product: 'Forever', shade_value: '030', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
-                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '105N', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' }
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '105N', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR20', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '2N1', confidence: 0.79, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+2N1' }
+            ],
+            
+            // YSL shades recommendations
+            'YSL_BR10': [
+                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.90, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
+                { brand: 'Dior', product: 'Forever', shade_value: '021', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '1N1', confidence: 0.79, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+1N1' }
+            ],
+            'YSL_BR20': [
+                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC20', confidence: 0.89, depth: 1, link: 'https://goldapple.ru/19000287283-studio-fix-fluid-spf-15-24hr-matte-foundation-oil-control' },
+                { brand: 'Dior', product: 'Forever', shade_value: '030', confidence: 0.87, depth: 2, link: 'https://goldapple.ru/19000032252-forever' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '105N', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion' },
+                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '30 Beige', confidence: 0.81, depth: 2, link: 'https://goldapple.ru/19000013042' },
+                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '2N1', confidence: 0.78, depth: 2, link: 'https://goldapple.ru/search?q=Est%C3%A9e+Lauder+Double+Wear+2N1' }
             ]
         };
 
