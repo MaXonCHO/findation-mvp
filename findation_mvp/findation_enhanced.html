@@ -810,6 +810,9 @@
             
             productSelect.addEventListener('change', function() {
                 const product = this.value;
+                console.log('=== ЗАГРУЗКА ОТТЕНКОВ ===');
+                console.log('Выбранный продукт:', product);
+                
                 if (!product) {
                     shadeSelect.disabled = true;
                     shadeSelect.innerHTML = '<option value="">Сначала выберите линейку</option>';
@@ -818,7 +821,13 @@
                 
                 // Load shades from demo data
                 const brand = brandSelect.value;
+                console.log('Бренд:', brand);
+                console.log('Доступные оттенки в DEMO_DATA.shades:', Object.keys(DEMO_DATA.shades));
+                console.log('Ищу оттенки для продукта:', product);
+                
                 const shades = DEMO_DATA.shades[product] || [];
+                console.log('Найденные оттенки:', shades);
+                
                 shadeSelect.disabled = false;
                 shadeSelect.innerHTML = '<option value="">Выберите оттенок...</option>';
                 
@@ -828,6 +837,8 @@
                     option.textContent = shade;
                     shadeSelect.appendChild(option);
                 });
+                
+                console.log('=== КОНЕЦ ЗАГРУЗКИ ОТТЕНКОВ ===');
             });
         }
         
