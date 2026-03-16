@@ -1344,10 +1344,12 @@
                     <div class="text-sm text-gray-500 mb-6">
                         На 0.5 тона светлее твоего ${bestMatch.sourceCosmetic.brand} ${bestMatch.sourceCosmetic.shade_value || ''}
                     </div>
-                    <button class="w-full beige-button-dark py-3 rounded-lg font-semibold">
+                    <a href="${generateGoldAppleURL(bestMatch.shade.brand, bestMatch.shade.product, bestMatch.shade.shade_value)}" 
+                       target="_blank" 
+                       class="w-full beige-button-dark py-3 rounded-lg font-semibold text-center inline-block hover:opacity-90 transition-opacity">
                         <i class="fas fa-shopping-cart mr-2"></i>
                         Купить в GoldApple
-                    </button>
+                    </a>
                 </div>
                 
                 <!-- Alternatives -->
@@ -1364,16 +1366,32 @@
                                 </div>
                             </div>
                             <div class="text-beige-600 font-medium mb-4">${rec.shade.shade_value || 'Без оттенка'}</div>
-                            <button class="w-full beige-outline py-2 rounded-lg text-sm">
+                            <a href="${generateGoldAppleURL(rec.shade.brand, rec.shade.product, rec.shade.shade_value)}" 
+                               target="_blank" 
+                               class="w-full beige-outline py-2 rounded-lg text-sm text-center inline-block hover:bg-beige-50 transition-colors">
                                 <i class="fas fa-shopping-cart mr-2"></i>
                                 Купить
-                            </button>
+                            </a>
                         </div>
                     `).join('')}
                 </div>
             `;
             
             container.innerHTML = html;
+        }
+
+        // Generate GoldApple URL for product
+        function generateGoldAppleURL(brand, product, shade) {
+            // Base URL for GoldApple search
+            const baseUrl = 'https://goldapple.ru/search';
+            
+            // Create search query from brand, product and shade
+            const searchQuery = `${brand} ${product} ${shade}`.trim();
+            
+            // Encode for URL
+            const encodedQuery = encodeURIComponent(searchQuery);
+            
+            return `${baseUrl}?q=${encodedQuery}`;
         }
 
         // Get shade color with enhanced mapping
