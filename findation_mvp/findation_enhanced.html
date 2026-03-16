@@ -1227,20 +1227,10 @@
                 { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.88, depth: 2 },
                 { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2 }
             ],
-            'MAC_NC25': [
-                { brand: 'Dior', product: 'Dior Forever', shade_value: '030', confidence: 0.93, depth: 1 },
-                { brand: 'Chanel', product: 'Vitalumière Aqua', shade_value: '20 Beige', confidence: 0.87, depth: 2 },
-                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '2N1', confidence: 0.85, depth: 2 }
-            ],
             'Dior_021': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.95, depth: 1 },
                 { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.89, depth: 2 },
                 { brand: 'Lancôme', product: 'Teint Idole', shade_value: '200', confidence: 0.84, depth: 2 }
-            ],
-            'Dior_030': [
-                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC25', confidence: 0.93, depth: 1 },
-                { brand: 'Estée Lauder', product: 'Double Wear', shade_value: '2N1', confidence: 0.88, depth: 2 },
-                { brand: 'NARS', product: 'Natural Radiant', shade_value: 'St. Moritz', confidence: 0.86, depth: 2 }
             ],
             'Clarins_101W': [
                 { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.91, depth: 1 },
@@ -1294,7 +1284,15 @@
             if (recs.length === 0) {
                 container.innerHTML = `
                     <div class="text-center py-12">
-                        <p class="text-gray-600">Пока нет рекомендаций. Попробуй добавить другие оттенки.</p>
+                        <p class="text-gray-600 mb-4">Пока нет рекомендаций. Попробуй добавить другие оттенки.</p>
+                        
+                        <!-- Показываем демо-связи -->
+                        <div class="bg-beige-50 p-4 rounded-lg mb-6 max-w-md mx-auto">
+                            <h4 class="font-semibold text-gray-900 mb-2">🔗 Демонстрационные связи:</h4>
+                            <div class="text-sm text-gray-600">
+                                ${DEMO_LINKS.map(link => `<div class="mb-1">• ${link}</div>`).join('')}
+                            </div>
+                        </div>
                     </div>
                 `;
                 return;
