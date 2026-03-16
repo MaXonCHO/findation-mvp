@@ -1361,6 +1361,8 @@
                 for (const cosmetic of cosmeticBag) {
                     const cosmeticKey = `${cosmetic.brand}_${cosmetic.shade_value}`;
                     console.log(`Ищу ключ: "${cosmeticKey}"`);
+                    console.log(`Объект косметики:`, cosmetic);
+                    console.log(`Бренд: "${cosmetic.brand}", Оттенок: "${cosmetic.shade_value}"`);
                     
                     const demoRecs = DEMO_RECOMMENDATIONS[cosmeticKey] || [];
                     console.log(`Найдено рекомендаций для "${cosmeticKey}":`, demoRecs.length);
