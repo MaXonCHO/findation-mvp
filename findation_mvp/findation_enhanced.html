@@ -1231,19 +1231,19 @@
         // Demo recommendations for MVP
         const DEMO_RECOMMENDATIONS = {
             'MAC_NC15': [
-                { brand: 'Dior', product: 'Dior Forever', shade_value: '021', confidence: 0.95, depth: 1 },
-                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.88, depth: 2 },
-                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2 }
+                { brand: 'Dior', product: 'Dior Forever', shade_value: '021', confidence: 0.95, depth: 1, link: 'https://goldapple.ru/14023300014-dior-forever-skin-glow-24h-stay-full-coverage-foundation-30ml' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.88, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion-velvet-cream-30ml' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.82, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours-foundation-30ml' }
             ],
             'Dior_021': [
-                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.95, depth: 1 },
-                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.89, depth: 2 },
-                { brand: 'Lancôme', product: 'Teint Idole', shade_value: '200', confidence: 0.84, depth: 2 }
+                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.95, depth: 1, link: 'https://goldapple.ru/11187700014-mac-studio-fix-fluid-spf-15-30ml' },
+                { brand: 'Clarins', product: 'Skin Illusion', shade_value: '101W', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/14036200014-skin-illusion-velvet-cream-30ml' },
+                { brand: 'Lancôme', product: 'Teint Idole', shade_value: '200', confidence: 0.84, depth: 2, link: 'https://goldapple.ru/20083300014-lancome-teint-idole-ultra-wear-foundation-30ml' }
             ],
             'Clarins_101W': [
-                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.91, depth: 1 },
-                { brand: 'Dior', product: 'Dior Forever', shade_value: '021', confidence: 0.89, depth: 2 },
-                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.83, depth: 2 }
+                { brand: 'MAC', product: 'Studio Fix Fluid', shade_value: 'NC15', confidence: 0.91, depth: 1, link: 'https://goldapple.ru/11187700014-mac-studio-fix-fluid-spf-15-30ml' },
+                { brand: 'Dior', product: 'Dior Forever', shade_value: '021', confidence: 0.89, depth: 2, link: 'https://goldapple.ru/14023300014-dior-forever-skin-glow-24h-stay-full-coverage-foundation-30ml' },
+                { brand: 'YSL', product: 'All Hours', shade_value: 'BR10', confidence: 0.83, depth: 2, link: 'https://goldapple.ru/19443300014-yves-saint-laurent-all-hours-foundation-30ml' }
             ]
         };
 
@@ -1284,6 +1284,7 @@
                                 },
                                 confidence: rec.confidence,
                                 depth: rec.depth,
+                                link: rec.link, // Добавляем реальную ссылку
                                 sourceCosmetic: cosmetic
                             });
                         } else {
@@ -1344,7 +1345,7 @@
                     <div class="text-sm text-gray-500 mb-6">
                         На 0.5 тона светлее твоего ${bestMatch.sourceCosmetic.brand} ${bestMatch.sourceCosmetic.shade_value || ''}
                     </div>
-                    <a href="${generateGoldAppleURL(bestMatch.shade.brand, bestMatch.shade.product, bestMatch.shade.shade_value)}" 
+                    <a href="${bestMatch.link || generateGoldAppleURL(bestMatch.shade.brand, bestMatch.shade.product, bestMatch.shade.shade_value)}" 
                        target="_blank" 
                        class="w-full beige-button-dark py-3 rounded-lg font-semibold text-center inline-block hover:opacity-90 transition-opacity">
                         <i class="fas fa-shopping-cart mr-2"></i>
@@ -1366,7 +1367,7 @@
                                 </div>
                             </div>
                             <div class="text-beige-600 font-medium mb-4">${rec.shade.shade_value || 'Без оттенка'}</div>
-                            <a href="${generateGoldAppleURL(rec.shade.brand, rec.shade.product, rec.shade.shade_value)}" 
+                            <a href="${rec.link || generateGoldAppleURL(rec.shade.brand, rec.shade.product, rec.shade.shade_value)}" 
                                target="_blank" 
                                class="w-full beige-outline py-2 rounded-lg text-sm text-center inline-block hover:bg-beige-50 transition-colors">
                                 <i class="fas fa-shopping-cart mr-2"></i>
