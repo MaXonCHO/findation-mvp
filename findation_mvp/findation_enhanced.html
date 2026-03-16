@@ -977,12 +977,12 @@
             console.log('Ключ для поиска:', `${shade.brand}_${shade.shade_value}`);
 
             if (cosmeticBag.find(item => item.id === shade.id)) {
-                alert('Этот продукт уже в косметичке');
+                console.log('Этот продукт уже в косметичке');
                 return;
             }
             
             if (cosmeticBag.length >= 3) {
-                alert('Максимум 3 продукта в косметичке');
+                console.log('Максимум 3 продукта в косметичке');
                 return;
             }
 
