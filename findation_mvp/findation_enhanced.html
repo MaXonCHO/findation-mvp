@@ -954,6 +954,11 @@
             const productSelect = document.getElementById('product-select');
             const shadeSelect = document.getElementById('shade-select');
             
+            console.log('=== ДОБАВЛЕНИЕ ПРОДУКТА ===');
+            console.log('Бренд:', brandSelect.value);
+            console.log('Продукт:', productSelect.value);
+            console.log('Оттенок:', shadeSelect.value);
+            
             if (!brandSelect.value || !productSelect.value || !shadeSelect.value) {
                 alert('Пожалуйста, выберите бренд, линейку и оттенок');
                 return;
@@ -967,6 +972,9 @@
                 shade_value: shadeSelect.value,
                 shade_name: shadeSelect.value
             };
+            
+            console.log('Создан объект shade:', shade);
+            console.log('Ключ для поиска:', `${shade.brand}_${shade.shade_value}`);
 
             if (cosmeticBag.find(item => item.id === shade.id)) {
                 alert('Этот продукт уже в косметичке');
